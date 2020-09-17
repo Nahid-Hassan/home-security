@@ -5,6 +5,7 @@ from keras.layers import Conv2D, MaxPooling2D
 from constraints import Constraints
 from keras import backend as K
 
+
 class BuildModel:
 
     def build(self):
@@ -29,7 +30,7 @@ class BuildModel:
         self.model.add(Conv2D(64, (3, 3)))
         self.model.add(Activation('relu'))
         self.model.add(MaxPooling2D(pool_size=(2, 2)))
-    
+
         self.model.add(Flatten())
         self.model.add(Dense(64))
         self.model.add(Activation('relu'))
