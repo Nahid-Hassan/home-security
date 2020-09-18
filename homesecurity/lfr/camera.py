@@ -31,7 +31,10 @@ class VideoCamera(object):
 			roi = cv2.resize(fc, (48, 48))
 			# predict emotions
 			pred = model.predict_emotion(roi[np.newaxis, :, :, np.newaxis])
-            
+
+            # predict human face
+			# pred = model.predict_person(roi[np.newaxis, :, :, np.newaxis])
+
             # write predict persons code is here
 
 			cv2.putText(fr, pred, (x, y), font, 1, (255, 255, 0), 2)

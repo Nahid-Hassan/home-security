@@ -17,27 +17,28 @@ class FacialExpressionModel(object):
                      "Surprise"]
 
     # later we use it for different our actual model
-    PERSON_NAME_LIST = ["Abir", "Rafi", "Bobi"]
+    #PERSON_NAME_LIST = ["Abir", "Rafi", "Bobi"]
 
     def __init__(self, model_json_file, model_weights_file):
         # load model from JSON file
         with open(model_json_file, "r") as json_file:
             loaded_model_json = json_file.read()
             self.loaded_model = model_from_json(loaded_model_json)
+            self.loaded_model.summary()
 
         # load weights into the new model
         self.loaded_model.load_weights(model_weights_file)
 
+    # predict human_emotion
     def predict_emotion(self, img):
         global session
         set_session(session)
         self.preds = self.loaded_model.predict(img)
         return FacialExpressionModel.EMOTIONS_LIST[np.argmax(self.preds)]
-    """
+
     # write predict_person function is here
-    def predict_person(self, img):
-        global session
-        set_session(session)
-        self.preds = self.loaded_model.predict(img)
-        return FacialExpressionModel.PERSON_NAME_LIST[np.argmax(self.preds)]
-    """
+    # def predict_person(self, img):
+    #    global session
+    #    set_session(session)
+    #    self.preds = self.loaded_model.predict(img)
+    #    return FacialExpressionModel.PERSON_NAME_LIST[np.argmax(self.preds)]
