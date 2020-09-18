@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http.response import StreamingHttpResponse
 from lfr.camera	import VideoCamera
 
-def index(request):
+def index(request):	
 	return render(request, 'lfr/index.html')
 
 
